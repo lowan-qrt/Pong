@@ -1,4 +1,3 @@
-# Importation du module Pygame
 import pygame
 import random
 
@@ -31,12 +30,28 @@ cercle_vy = 0.2  # vitesse de déplacement vertical
 rect_width = 15
 rect_height = 100
 # Vitesse de déplacement des curseurs
-rect_speed = 0.3
+rect_speed = 0.5
 # Coordonnées des curseurs
 rect_player1_x = 50
 rect_player1_y = sh // 2 - rect_height // 2
 rect_player2_x = sw - rect_width - 50
 rect_player2_y = sh // 2 - rect_height // 2
+
+# Position et dimensions du carré
+cote_carre = 50
+carre_x = sw // 2 - cote_carre 
+carre_y = 0
+carre2_x = sw // 2
+carre2_y = 0
+
+# Position du trait vertical
+trait_x = sw // 2
+trait_longueur = sh
+
+# Variables de score
+score_joueur1 = 0
+score_joueur2 = 0
+font = pygame.font.Font(None, 36)  # Police d'écriture
 
 # Boucle principale
 running = True
@@ -67,7 +82,15 @@ while running:
     if cercle_y - rayon_cercle < 0 or cercle_y + rayon_cercle > sh:
         cercle_vy *= -1
     if cercle_x - rayon_cercle < 0 or cercle_x + rayon_cercle > sw:
-        running = False
+        # Augmentation du score pour le joueur correspondant
+        if cercle_x - rayon_cercle < 0:
+            score_joueur2 += 1
+        else:
+            score_joueur1 += 1
+        # Réinitialisation de la position de la balle
+        cercle_x = sw // 2
+        cercle_y = random.randint(1, 500)
+
     # Vérification des collisions avec les curseurs (pour balle)
     if rect_player1_x + rect_width > cercle_x - rayon_cercle > rect_player1_x and rect_player1_y + rect_height > cercle_y > rect_player1_y:
         cercle_vx *= -1.1
@@ -82,10 +105,19 @@ while running:
     # Dessin des curseurs "Joueur x"
     pygame.draw.rect(screen, BLANC, (rect_player1_x, rect_player1_y, rect_width, rect_height))
     pygame.draw.rect(screen, BLANC, (rect_player2_x, rect_player2_y, rect_width, rect_height))
-    
+    pygame.draw.rect(screen, BLANC, (carre_x, carre_y, cote_carre, cote_carre), 1)
+    pygame.draw.rect(screen, BLANC, (carre2_x, carre2_y, cote_carre, cote_carre), 1)
+    # Dessin du trait vertical
+    pygame.draw.line(screen, BLANC, (trait_x, 0), (trait_x, trait_longueur), 1)
+
+    # Affichage du score
+    score_texte = f"{score_joueur1} - {score_joueur2}"
+    score_render = font.render(score_texte, True, BLANC)
+    screen.blit(score_render, (sw // 2 - score_render.get_width() // 2, 10))
+
     # Mise à jour de l'affichage
     pygame.display.flip()
-    
+
 # Quitter Pygame + quitter le programme
 pygame.quit()
 exit()
