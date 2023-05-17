@@ -64,7 +64,7 @@ while running:
     if cercle_y - rayon_cercle < 0 or cercle_y + rayon_cercle > sh:
         cercle_vy *= -1
     if cercle_x - rayon_cercle < 0 or cercle_x + rayon_cercle > sw:
-        cercle_vx *= -1        
+        running = False
     # Vérification des collisions avec les curseurs (pour balle)
     if rect_player1_x + rect_width > cercle_x - rayon_cercle > rect_player1_x and rect_player1_y + rect_height > cercle_y > rect_player1_y:
         cercle_vx *= -1
