@@ -46,14 +46,14 @@ while running:
     # Ecoute des événements "joueur"
     keys = pygame.key.get_pressed()
     # Joueur 1 : si [flèches directionnelles], monter ou descendre
-    if keys[pygame.K_z] and rect_player2_y > 0:
+    if keys[pygame.K_UP] and rect_player2_y >= 0:
         rect_player2_y -= rect_speed
-    if keys[pygame.K_s] and rect_player2_y + rect_height < sh:
+    if keys[pygame.K_DOWN] and rect_player2_y + rect_height < sh:
         rect_player2_y += rect_speed
     # Joueur 2 : si [z] ou [s], monter ou descendre
-    if keys[pygame.K_UP] and rect_player1_y > 0:
+    if keys[pygame.K_z] and rect_player1_y >= 0:
         rect_player1_y -= rect_speed
-    if keys[pygame.K_DOWN] and rect_player1_y + rect_height < sh:
+    if keys[pygame.K_s] and rect_player1_y + rect_height < sh:
         rect_player1_y += rect_speed
 
     # Mise à jour des coordonnées de la balle
