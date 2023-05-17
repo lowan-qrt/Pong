@@ -1,5 +1,6 @@
 # Importation du module Pygame
 import pygame
+import random
 
 # Initialisation de Pygame
 pygame.init()
@@ -18,8 +19,10 @@ screen = pygame.display.set_mode((sw, sh))
 pygame.display.set_caption('Pong')
 
 # Coordonnées et rayon de la balle
+y = random.randint(1, 500)
+print(y)
 cercle_x = sw // 2
-cercle_y = sh // 2
+cercle_y = y
 rayon_cercle = 5
 cercle_vx = 0.2  # vitesse de déplacement horizontal
 cercle_vy = 0.2  # vitesse de déplacement vertical
@@ -28,7 +31,7 @@ cercle_vy = 0.2  # vitesse de déplacement vertical
 rect_width = 15
 rect_height = 100
 # Vitesse de déplacement des curseurs
-rect_speed = 0.2
+rect_speed = 0.3
 # Coordonnées des curseurs
 rect_player1_x = 50
 rect_player1_y = sh // 2 - rect_height // 2
@@ -67,9 +70,9 @@ while running:
         running = False
     # Vérification des collisions avec les curseurs (pour balle)
     if rect_player1_x + rect_width > cercle_x - rayon_cercle > rect_player1_x and rect_player1_y + rect_height > cercle_y > rect_player1_y:
-        cercle_vx *= -1
+        cercle_vx *= -1.1
     if rect_player2_x < cercle_x + rayon_cercle < rect_player2_x + rect_width and rect_player2_y + rect_height > cercle_y > rect_player2_y:
-        cercle_vx *= -1
+        cercle_vx *= -1.1
 
     # Disposition de l'écran en noir
     screen.fill(NOIR)
