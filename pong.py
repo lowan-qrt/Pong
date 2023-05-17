@@ -21,8 +21,8 @@ pygame.display.set_caption('Pong')
 cercle_x = sw // 2
 cercle_y = sh // 2
 rayon_cercle = 5
-cercle_dx = 0.2  # vitesse de déplacement horizontal
-cercle_dy = 0.2  # vitesse de déplacement vertical
+cercle_vx = 0.2  # vitesse de déplacement horizontal
+cercle_vy = 0.2  # vitesse de déplacement vertical
 
 # Dimensions des curseurs
 rect_width = 15
@@ -57,19 +57,19 @@ while running:
         rect_player1_y += rect_speed
 
     # Mise à jour des coordonnées de la balle
-    cercle_x += cercle_dx
-    cercle_y += cercle_dy
+    cercle_x += cercle_vx
+    cercle_y += cercle_vy
 
-    # Vérification des collisions avec les bords de l'écran
+    # Vérification des collisions avec les bords de l'écran (pour balle)
     if cercle_y - rayon_cercle < 0 or cercle_y + rayon_cercle > sh:
-        cercle_dy *= -1
+        cercle_vy *= -1
     if cercle_x - rayon_cercle < 0 or cercle_x + rayon_cercle > sw:
-        cercle_dx *= -1
-    # Vérification des collisions avec les curseurs
+        cercle_vx *= -1        
+    # Vérification des collisions avec les curseurs (pour balle)
     if rect_player1_x + rect_width > cercle_x - rayon_cercle > rect_player1_x and rect_player1_y + rect_height > cercle_y > rect_player1_y:
-        cercle_dx *= -1
+        cercle_vx *= -1
     if rect_player2_x < cercle_x + rayon_cercle < rect_player2_x + rect_width and rect_player2_y + rect_height > cercle_y > rect_player2_y:
-        cercle_dx *= -1
+        cercle_vx *= -1
 
     # Disposition de l'écran en noir
     screen.fill(NOIR)
