@@ -8,22 +8,22 @@ pygame.init()
 BLANC = (255, 255, 255)
 NOIR = (0, 0, 0)
 
-# Dimensions
-sw = 800  # largeur de l'écran
-sh = 500  # hauteur de l'écran
+# Dimensions fenêtre
+sw = 800  # screen with
+sh = 500  # screen height
 
-# Dimensions de la fenêtre
+# Affichage de la fenêtre
 screen = pygame.display.set_mode((sw, sh))
 # Nom de la fenêtre
 pygame.display.set_caption('Pong')
 
 # Coordonnées et rayon de la balle
 y = random.randint(1, 500)
-print(y)
 cercle_x = sw // 2
 cercle_y = y
 rayon_cercle = 5
-cercle_vx = 0.2  # vitesse de déplacement horizontal
+right_or_left = [-1, 1]
+cercle_vx = 0.2*random.choice(right_or_left)  # vitesse de déplacement horizontal
 cercle_vy = 0.2  # vitesse de déplacement vertical
 
 # Dimensions des curseurs
@@ -90,7 +90,7 @@ while running:
         # Réinitialisation de la position de la balle
         cercle_x = sw // 2
         cercle_y = random.randint(1, 500)
-        cercle_vx = 0.2 
+        cercle_vx = 0.2*random.choice(right_or_left) 
         cercle_vy = 0.2
 
     # Vérification des collisions avec les curseurs (pour balle)
@@ -107,9 +107,10 @@ while running:
     # Dessin des curseurs "Joueur x"
     pygame.draw.rect(screen, BLANC, (rect_player1_x, rect_player1_y, rect_width, rect_height))
     pygame.draw.rect(screen, BLANC, (rect_player2_x, rect_player2_y, rect_width, rect_height))
+    # Dessin des carrés tableau
     pygame.draw.rect(screen, BLANC, (carre_x, carre_y, cote_carre, cote_carre), 1)
     pygame.draw.rect(screen, BLANC, (carre2_x, carre2_y, cote_carre, cote_carre), 1)
-    # Dessin du trait vertical
+    # Dessin de la ligne verticale
     pygame.draw.line(screen, BLANC, (trait_x, 0), (trait_x, trait_longueur), 1)
 
     # Affichage du score
