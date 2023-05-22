@@ -19,7 +19,7 @@ screen = pygame.display.set_mode((sw, sh))
 pygame.display.set_caption('Pong')
 
 # Chargement de l'image
-image = pygame.image.load("C:/Users/LOWAN.QUARTON/OneDrive - Conseil Régional des Pays de La Loire - Direction des Lycées/Bureau/Lycée/1C - Première Générale/NSI/Projets/Pong/image/pong_image.png")
+image = pygame.image.load("image/pong_image.png")
 # Redimensionnement de l'image pour l'adapter à la fenêtre
 fenetre_rect = screen.get_rect()
 image_rect = image.get_rect()
