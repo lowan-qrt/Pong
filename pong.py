@@ -78,7 +78,7 @@ while running:
     cercle_x += cercle_vx
     cercle_y += cercle_vy
 
-    # Vérification des collisions avec les bords de l'écran (pour balle)
+    # Vérification des collisions avec les bords de l'écran (pour la balle)
     if cercle_y - rayon_cercle < 0 or cercle_y + rayon_cercle > sh:
         cercle_vy *= -1
     if cercle_x - rayon_cercle < 0 or cercle_x + rayon_cercle > sw:
@@ -90,6 +90,8 @@ while running:
         # Réinitialisation de la position de la balle
         cercle_x = sw // 2
         cercle_y = random.randint(1, 500)
+        cercle_vx = 0.2 
+        cercle_vy = 0.2
 
     # Vérification des collisions avec les curseurs (pour balle)
     if rect_player1_x + rect_width > cercle_x - rayon_cercle > rect_player1_x and rect_player1_y + rect_height > cercle_y > rect_player1_y:
