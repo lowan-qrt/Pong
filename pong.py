@@ -1,21 +1,33 @@
+# Import des modules
 import pygame
 import random
-
-# Initialisation de Pygame
-pygame.init()
+import time
 
 # Définition des couleurs (RGB)
 BLANC = (255, 255, 255)
 NOIR = (0, 0, 0)
 
-# Dimensions fenêtre
+# Initialisation de Pygame
+pygame.init()
+
+# /// FENETRE ///
 sw = 800  # screen with
 sh = 500  # screen height
-
 # Affichage de la fenêtre
 screen = pygame.display.set_mode((sw, sh))
 # Nom de la fenêtre
 pygame.display.set_caption('Pong')
+
+# Chargement de l'image
+image = pygame.image.load("C:/Users/LOWAN.QUARTON/OneDrive - Conseil Régional des Pays de La Loire - Direction des Lycées/Bureau/Lycée/1C - Première Générale/NSI/Projets/Pong/image/pong_image.png")
+# Redimensionnement de l'image pour l'adapter à la fenêtre
+fenetre_rect = screen.get_rect()
+image_rect = image.get_rect()
+image_rect.center = fenetre_rect.center
+image = pygame.transform.scale(image, (fenetre_rect.width, fenetre_rect.height))
+# Affichage de l'image
+screen.blit(image, (0, 0))
+pygame.display.flip()
 
 # Coordonnées et rayon de la balle
 y = random.randint(1, 500)
@@ -52,6 +64,16 @@ trait_longueur = sh
 score_joueur1 = 0
 score_joueur2 = 0
 font = pygame.font.Font(None, 36)  # Police d'écriture
+
+# Temps d'attente de 5 secondes
+debut = time.time()
+# Temps d'attente de 5 secondes
+debut = time.time()
+while time.time() - debut < 5:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            
 
 # Boucle principale
 running = True
